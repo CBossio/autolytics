@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, MapPin } from "lucide-react"
+import Image from "next/image"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -30,28 +31,31 @@ export function ContactSection() {
   }
 
   return (
-    <section className="py-20 bg-[color:var(--color-autolytics-purple)] relative overflow-hidden">
+    <section className="py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: "#461b6a" }}>
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full"></div>
-        <div className="absolute bottom-10 left-10 w-24 h-24 bg-[color:var(--color-autolytics-turquoise)] rounded-full"></div>
+        <div className="absolute top-10 right-10 w-24 lg:w-32 h-24 lg:h-32 bg-white rounded-full"></div>
+        <div
+          className="absolute bottom-10 left-10 w-16 lg:w-24 h-16 lg:h-24 rounded-full"
+          style={{ backgroundColor: "#03ccd0" }}
+        ></div>
       </div>
 
       <div className="container mx-auto max-w-4xl px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
+        <div className="text-center mb-8 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
             ¿Listo para llevar tu pyme al siguiente nivel?
           </h2>
-          <p className="text-lg text-purple-100 text-pretty leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base lg:text-lg text-purple-100 text-pretty leading-relaxed max-w-2xl mx-auto">
             Hablemos. Completa el formulario y nos pondremos en contacto para coordinar un diagnóstico gratuito y sin
             compromiso de tus procesos.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Contact Form */}
           <Card className="bg-white/95 backdrop-blur-sm">
-            <CardContent className="p-8">
+            <CardContent className="p-6 lg:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -102,7 +106,8 @@ export function ContactSection() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-[color:var(--color-autolytics-turquoise)] hover:bg-[color:var(--color-autolytics-turquoise)]/90 text-white font-semibold py-3"
+                  className="w-full text-white font-semibold py-3 hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: "#03ccd0" }}
                 >
                   Enviar Consulta
                 </Button>
@@ -111,28 +116,35 @@ export function ContactSection() {
           </Card>
 
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-6 lg:space-y-8">
             <div className="text-white">
-              <h3 className="text-xl font-semibold mb-6">Información de Contacto</h3>
+              <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">Información de Contacto</h3>
 
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-[color:var(--color-autolytics-turquoise)]" />
-                  <span>contacto@autolytics.com</span>
+                  <Mail className="w-5 h-5 flex-shrink-0" style={{ color: "#03ccd0" }} />
+                  <span className="text-sm lg:text-base">contacto@autolytics.com</span>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-[color:var(--color-autolytics-turquoise)]" />
-                  <span>Buenos Aires, Argentina</span>
+                  <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: "#03ccd0" }} />
+                  <span className="text-sm lg:text-base">Buenos Aires, Argentina</span>
                 </div>
               </div>
             </div>
 
-            {/* Robot mascot in corner */}
             <div className="hidden md:block">
-              <div className="relative w-48 h-48 mx-auto">
+              <div className="relative w-32 lg:w-48 h-32 lg:h-48 mx-auto">
                 <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
-                <div className="relative z-10 text-6xl text-center pt-16">🤖</div>
+                <div className="relative z-10 flex items-center justify-center h-full">
+                  <Image
+                    src="/autolytics-robot.png"
+                    alt="Robot mascota de Autolytics"
+                    width={120}
+                    height={120}
+                    className="w-20 lg:w-32 h-auto opacity-80"
+                  />
+                </div>
               </div>
             </div>
           </div>
