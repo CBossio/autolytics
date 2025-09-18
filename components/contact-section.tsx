@@ -138,7 +138,7 @@ export function ContactSection() {
                 <div className="absolute inset-0 bg-white/10 rounded-full blur-xl"></div>
                 <div className="relative z-10 flex items-center justify-center h-full">
                   <Image
-                    src="/autolytics-robot.png"
+                    src="/autolytics-robot-head.png"
                     alt="Robot mascota de Autolytics"
                     width={120}
                     height={120}

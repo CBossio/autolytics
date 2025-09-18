@@ -22,7 +22,13 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Image src="/autolytics-robot.png" alt="Autolytics Robot" width={40} height={40} className="w-10 h-10" />
+            <Image
+              src="/autolytics-robot-head.png"
+              alt="Autolytics Robot"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
             <span className="text-xl font-bold" style={{ color: "#461b6a" }}>
               Autolytics
             </span>

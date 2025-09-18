@@ -66,7 +66,7 @@ export function HeroSection() {
           <div className="flex justify-center lg:justify-end order-first lg:order-last">
             <div className="relative">
               <Image
-                src="/autolytics-robot.png"
+                src="/autolytics-robot-full.png"
                 alt="Robot mascota de Autolytics"
                 width={400}
                 height={400}
