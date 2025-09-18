@@ -44,7 +44,7 @@ export function HeroSection() {
               <Button
                 onClick={scrollToContact}
                 size="lg"
-                className="font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg text-white hover:opacity-90 transition-opacity"
+                className="font-semibold px-6 cursor-pointer lg:px-8 py-3 lg:py-4 text-base lg:text-lg text-white hover:opacity-90 transition-opacity"
                 style={{ backgroundColor: "#03ccd0" }}
               >
                 Agendar Diagnóstico Gratuito
@@ -54,7 +54,7 @@ export function HeroSection() {
                 onClick={scrollToServices}
                 variant="ghost"
                 size="lg"
-                className="font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg hover:bg-white/20 transition-colors"
+                className="font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg hover:bg-white/20 transition-colors cursor-pointer"
                 style={{ color: "#461b6a" }}
               >
                 Ver nuestros servicios
