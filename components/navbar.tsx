@@ -32,19 +32,19 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("hero")}
-              className="text-gray-700 hover:text-[#461b6a] transition-colors font-medium"
+              className="text-gray-700 hover:text-[#461b6a] transition-colors font-medium cursor-pointer"
             >
               Inicio
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="text-gray-700 hover:text-[#461b6a] transition-colors font-medium"
+              className="text-gray-700 hover:text-[#461b6a] transition-colors font-medium cursor-pointer"
             >
               Servicios
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-gray-700 hover:text-[#461b6a] transition-colors font-medium"
+              className="text-gray-700 hover:text-[#461b6a] transition-colors font-medium cursor-pointer"
             >
               Contacto
             </button>
