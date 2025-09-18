@@ -50,7 +50,7 @@ export function Navbar() {
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="font-semibold"
+              className="font-semibold cursor-pointer"
               style={{ backgroundColor: "#03ccd0", color: "white" }}
             >
               Diagnóstico Gratuito
