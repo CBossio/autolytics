@@ -27,7 +27,7 @@ export function Navbar() {
               alt="Autolytics Robot"
               width={2000}
               height={2000}
-              className="w-10 h-10"
+              className="w-50 h-50"
             />
             <span className="text-xl font-bold" style={{ color: "#461b6a" }}>
               Autolytics
