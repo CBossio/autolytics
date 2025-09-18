@@ -25,8 +25,8 @@ export function Navbar() {
             <Image
               src="/autolytics-robot-head.png"
               alt="Autolytics Robot"
-              width={40}
-              height={40}
+              width={60}
+              height={60}
               className="w-10 h-10"
             />
             <span className="text-xl font-bold" style={{ color: "#461b6a" }}>
