@@ -71,6 +71,10 @@ export function HeroSection() {
                 width={400}
                 height={400}
                 className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto"
+                style={{
+                  filter:
+                    "drop-shadow(0 0 20px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 40px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 60px rgba(0, 0, 0, 0.2))",
+                }}
                 priority
               />
             </div>
