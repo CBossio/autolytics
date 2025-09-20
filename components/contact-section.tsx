@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -16,6 +16,44 @@ export function ContactSection() {
     email: "",
     message: "",
   })
+
+  const [lang, setLang] = useState(
+    typeof window !== 'undefined' && window.__GLOBAL_LANG__ ? window.__GLOBAL_LANG__ : "es"
+  );
+
+  useEffect(() => {
+    const handler = () => {
+      setLang(window.__GLOBAL_LANG__ || "es");
+    };
+    window.addEventListener("languageChange", handler);
+    // Patch setLang in window.__GLOBAL_LANG__ setter
+    const orig = Object.getOwnPropertyDescriptor(window, "__GLOBAL_LANG__");
+    let _lang = window.__GLOBAL_LANG__;
+    Object.defineProperty(window, "__GLOBAL_LANG__", {
+      configurable: true,
+      get() { return _lang; },
+      set(val) {
+        _lang = val;
+        window.dispatchEvent(new Event("languageChange"));
+      }
+    });
+    return () => {
+      window.removeEventListener("languageChange", handler);
+      if (orig) Object.defineProperty(window, "__GLOBAL_LANG__", orig);
+    };
+  }, []);
+
+  const t = {
+    title: lang === "en" ? "Ready to take your SME to the next level?" : "¿Listo para llevar tu pyme al siguiente nivel?",
+    desc: lang === "en"
+      ? "Let's talk. Complete the form, and we will get in touch to coordinate a free, no-commitment diagnosis of your processes."
+      : "Hablemos. Completa el formulario y nos pondremos en contacto para coordinar un diagnóstico gratuito y sin compromiso de tus procesos.",
+    name: lang === "en" ? "Name" : "Nombre",
+    email: lang === "en" ? "Company Email" : "Email de la empresa",
+    help: lang === "en" ? "How can we help you?" : "¿En qué podemos ayudarte?",
+    send: lang === "en" ? "Send" : "Enviar Consulta",
+    contactInfo: lang === "en" ? "Contact Information" : "Información de Contacto",
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -31,7 +69,7 @@ export function ContactSection() {
   }
 
   return (
-    <section className="py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: "#461b6a" }}>
+    <section className="min-h-screen flex items-center justify-center py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: "#461b6a" }}>
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 right-10 w-24 lg:w-32 h-24 lg:h-32 bg-white rounded-full"></div>
@@ -44,11 +82,10 @@ export function ContactSection() {
       <div className="container mx-auto max-w-4xl px-4 relative z-10">
         <div className="text-center mb-8 lg:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-balance">
-            ¿Listo para llevar tu pyme al siguiente nivel?
+            {t.title}
           </h2>
           <p className="text-base lg:text-lg text-purple-100 text-pretty leading-relaxed max-w-2xl mx-auto">
-            Hablemos. Completa el formulario y nos pondremos en contacto para coordinar un diagnóstico gratuito y sin
-            compromiso de tus procesos.
+            {t.desc}
           </p>
         </div>
 
@@ -59,7 +96,7 @@ export function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Nombre
+                    {t.name}
                   </label>
                   <Input
                     id="name"
@@ -69,13 +106,13 @@ export function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full"
-                    placeholder="Tu nombre completo"
+                    placeholder={lang === "en" ? "Full Name" : "Tu nombre completo"}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email de la empresa
+                    {t.email}
                   </label>
                   <Input
                     id="email"
@@ -85,13 +122,13 @@ export function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full"
-                    placeholder="contacto@tuempresa.com"
+                    placeholder={lang === "en" ? "contact@yourbusiness.com" : "contacto@tuempresa.com"}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    ¿En qué podemos ayudarte?
+                    {t.help}
                   </label>
                   <Textarea
                     id="message"
@@ -100,7 +137,7 @@ export function ContactSection() {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full min-h-[120px]"
-                    placeholder="Cuéntanos sobre tu negocio y qué procesos te gustaría automatizar o analizar..."
+                    placeholder={lang === "en" ? "Tell us about your business and what processes you'd like to automate or analyze..." : "Cuéntanos sobre tu negocio y qué procesos te gustaría automatizar o analizar..."}
                   />
                 </div>
 
@@ -109,7 +146,7 @@ export function ContactSection() {
                   className="w-full text-white font-semibold py-3 hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: "#03ccd0" }}
                 >
-                  Enviar Consulta
+                  {t.send}
                 </Button>
               </form>
             </CardContent>
@@ -118,7 +155,7 @@ export function ContactSection() {
           {/* Contact Information */}
           <div className="space-y-6 lg:space-y-8">
             <div className="text-white">
-              <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">Información de Contacto</h3>
+              <h3 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">{t.contactInfo}</h3>
 
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
