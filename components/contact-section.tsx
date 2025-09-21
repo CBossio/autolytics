@@ -51,7 +51,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="relative w-full py-20 md:py-32 bg-gray-50 dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden">
+    <section className="relative w-full py-20 md:py-32 bg-[#DEDEDE] dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden">
       {/* Background Circles (Light Mode) */}
       <div className="absolute top-10 left-10 w-48 h-48 rounded-full bg-purple-200 opacity-20 dark:hidden animate-blob filter blur-3xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-blue-200 opacity-20 dark:hidden animate-blob animation-delay-2000 filter blur-3xl"></div>
@@ -106,11 +106,15 @@ export function ContactSection() {
           {/* Right Column: Contact Info & Mascot (takes 2 of 5 columns) */}
           <div className="md:col-span-2 flex flex-col items-center justify-center text-center">
             <Image
-              src="/autolytics-robot-head.png" // IMPORTANT: Replace with the correct path to your robot image in the `public` folder
+              src="/autolytics-robot-head.png"
               alt="Autolytics Mascot"
               width={120}
               height={120}
               className="mb-8"
+              style={{
+                filter:
+                  "drop-shadow(0 4px 32px rgba(35, 20, 41, 0.7)) drop-shadow(0 2px 12px rgba(70, 27, 106, 0.5))",
+              }}
             />
             <h3 className="text-2xl font-bold text-[#5F259F] dark:text-[#00C4CC] mb-6">
               {t.contactTitle}
