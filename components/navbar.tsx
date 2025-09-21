@@ -118,8 +118,17 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2" style={{ color: "#461b6a" }}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2"
+            style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMenuOpen ? (
+              <X size={24} color={theme === "dark" ? "#d8c7fa" : "#461b6a"} />
+            ) : (
+              <Menu size={24} color={theme === "dark" ? "#d8c7fa" : "#461b6a"} />
+            )}
           </button>
         </div>
 
@@ -129,19 +138,22 @@ export function Navbar() {
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => scrollToSection("hero")}
-                className="text-left text-gray-700 hover:text-[#461b6a] transition-colors font-medium py-2"
+                className="text-left font-medium py-2 transition-colors"
+                style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
               >
                 {t.inicio}
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className="text-left text-gray-700 hover:text-[#461b6a] transition-colors font-medium py-2"
+                className="text-left font-medium py-2 transition-colors"
+                style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
               >
                 {t.servicios}
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-left text-gray-700 hover:text-[#461b6a] transition-colors font-medium py-2"
+                className="text-left font-medium py-2 transition-colors"
+                style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
               >
                 {t.contacto}
               </button>
@@ -152,6 +164,41 @@ export function Navbar() {
               >
                 {t.diagnostico}
               </Button>
+              {/* Theme and Language toggles for mobile */}
+              <div className="flex items-center justify-between mt-4 gap-4">
+                {/* Theme toggle */}
+                <button
+                  aria-label="Toggle theme"
+                  className="p-2 rounded-full border border-gray-200 bg-white hover:bg-gray-100 dark:bg-[#461b6a] dark:border-[#d8c7fa] dark:hover:bg-[#231429] transition-all duration-500"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", transition: 'all 0.5s cubic-bezier(.4,0,.2,1)' }}
+                >
+                  {theme === "dark" ? (
+                    <Moon size={20} className="text-[#d8c7fa] transition-all duration-500" />
+                  ) : (
+                    <Sun size={20} className="text-[#461b6a] transition-all duration-500" />
+                  )}
+                </button>
+                {/* Language toggle */}
+                <div className="flex items-center">
+                  <button
+                    className={`px-2 py-1 rounded-l-full border border-gray-300 font-semibold transition-colors duration-200 text-sm ${lang === "es" ? "bg-[#461b6a] text-[#d8c7fa]" : "bg-white text-[#461b6a] hover:bg-gray-100"}`}
+                    onClick={() => { setLang("es"); if (typeof window !== 'undefined') (window as any).__GLOBAL_LANG__ = "es"; }}
+                    aria-label="Cambiar a español"
+                    style={{ fontSize: 14, lineHeight: 1, minWidth: 28 }}
+                  >
+                    ES
+                  </button>
+                  <button
+                    className={`px-2 py-1 rounded-r-full border border-gray-300 font-semibold transition-colors duration-200 text-sm ${lang === "en" ? "bg-[#461b6a] text-[#d8c7fa]" : "bg-white text-[#461b6a] hover:bg-gray-100"}`}
+                    onClick={() => { setLang("en"); if (typeof window !== 'undefined') (window as any).__GLOBAL_LANG__ = "en"; }}
+                    aria-label="Switch to English"
+                    style={{ fontSize: 14, lineHeight: 1, minWidth: 28 }}
+                  >
+                    EN
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
