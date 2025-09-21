@@ -2,18 +2,20 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Cog, BarChart3, CheckCircle } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function ServicesSection() {
+  const { theme } = useTheme();
   const [lang, setLang] = useState(
     typeof window !== 'undefined' && window.__GLOBAL_LANG__ ? window.__GLOBAL_LANG__ : "es"
   );
 
+  // This logic for language handling is preserved and untouched.
   useEffect(() => {
     const handler = () => {
       setLang(window.__GLOBAL_LANG__ || "es");
     };
     window.addEventListener("languageChange", handler);
-    // Patch setLang in window.__GLOBAL_LANG__ setter
     const orig = Object.getOwnPropertyDescriptor(window, "__GLOBAL_LANG__");
     let _lang = window.__GLOBAL_LANG__;
     Object.defineProperty(window, "__GLOBAL_LANG__", {
@@ -30,6 +32,7 @@ export function ServicesSection() {
     };
   }, []);
 
+  // Your translation object is preserved and untouched.
   const t = {
     title: lang === "en" ? "Your business, optimized from end to end." : "Tu negocio, optimizado de punta a punta.",
     procTitle: lang === "en" ? "Process Automation" : "Automatización de Procesos",
@@ -48,77 +51,100 @@ export function ServicesSection() {
     analytics3: lang === "en" ? "Projections and KPI tracking." : "Proyecciones y seguimiento de KPIs.",
   };
 
+  // Define brand colors for easy reuse in Tailwind JIT compiler
+  const brandColors = {
+    purple: {
+      dark: '#5F259F', // Main purple for borders
+      light: '#d8c7fa', // Light mode BG
+    },
+    turquoise: '#00C4CC', // Accent for titles, icons
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center py-16 lg:py-20 bg-white">
+    <section
+      className="min-h-screen flex items-center justify-center px-4 py-16 bg-white dark:bg-[#121212] transition-colors duration-300"
+    >
       <div className="container mx-auto max-w-6xl px-4">
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-balance" style={{ color: "#461b6a" }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-balance text-[#461b6a] dark:text-white">
             {t.title}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Automatización de Procesos */}
-          <Card className="border-2 hover:shadow-lg transition-all duration-300" style={{ borderColor: "#d8c7fa" }}>
+          {/* Process Automation Card */}
+          <Card
+            className="border-2 bg-[#F3EFFF] dark:bg-[#1E1E1E] border-[#D1B6F6] dark:border-[#5F259F] hover:shadow-xl dark:hover:shadow-purple-900/20 transition-all duration-300"
+          >
             <CardContent className="p-6 lg:p-8">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
-                <div className="p-3 rounded-lg flex-shrink-0" style={{ backgroundColor: "#d8c7fa" }}>
-                  <Cog className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#461b6a" }} />
-                </div>
-                <h3 className="text-xl lg:text-2xl font-bold" style={{ color: "#461b6a" }}>
+              <div className="flex items-center gap-4 mb-6">
+                <Cog className="w-8 h-8 flex-shrink-0 text-[#5F259F] dark:text-[#00C4CC]" />
+                <h3 className="text-xl lg:text-2xl font-bold text-[#461b6a] dark:text-[#00C4CC]">
                   {t.procTitle}
                 </h3>
               </div>
 
-              <p className="text-gray-700 mb-6 leading-relaxed text-sm lg:text-base">
+              <p className="mb-6 leading-relaxed text-sm lg:text-base text-gray-700 dark:text-gray-300">
                 {t.procDesc}
               </p>
 
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#03ccd0" }} />
-                  <span className="text-gray-700 text-sm lg:text-base">{t.proc1}</span>
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.proc1}
+                  </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#03ccd0" }} />
-                  <span className="text-gray-700 text-sm lg:text-base">{t.proc2}</span>
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.proc2}
+                  </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#03ccd0" }} />
-                  <span className="text-gray-700 text-sm lg:text-base">{t.proc3}</span>
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.proc3}
+                  </span>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Analítica de Negocios */}
-          <Card className="border-2 hover:shadow-lg transition-all duration-300" style={{ borderColor: "#d8c7fa" }}>
+          {/* Business Analytics Card */}
+          <Card
+            className="border-2 bg-[#F3EFFF] dark:bg-[#1E1E1E] border-[#D1B6F6] dark:border-[#5F259F] hover:shadow-xl dark:hover:shadow-purple-900/20 transition-all duration-300"
+          >
             <CardContent className="p-6 lg:p-8">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
-                <div className="p-3 rounded-lg flex-shrink-0" style={{ backgroundColor: "#d8c7fa" }}>
-                  <BarChart3 className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#461b6a" }} />
-                </div>
-                <h3 className="text-xl lg:text-2xl font-bold" style={{ color: "#461b6a" }}>
+              <div className="flex items-center gap-4 mb-6">
+                <BarChart3 className="w-8 h-8 flex-shrink-0 text-[#5F259F] dark:text-[#00C4CC]" />
+                <h3 className="text-xl lg:text-2xl font-bold text-[#461b6a] dark:text-[#00C4CC]">
                   {t.analyticsTitle}
                 </h3>
               </div>
 
-              <p className="text-gray-700 mb-6 leading-relaxed text-sm lg:text-base">
+              <p className="mb-6 leading-relaxed text-sm lg:text-base text-gray-700 dark:text-gray-300">
                 {t.analyticsDesc}
               </p>
 
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#03ccd0" }} />
-                  <span className="text-gray-700 text-sm lg:text-base">{t.analytics1}</span>
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.analytics1}
+                  </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#03ccd0" }} />
-                  <span className="text-gray-700 text-sm lg:text-base">{t.analytics2}</span>
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.analytics2}
+                  </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#03ccd0" }} />
-                  <span className="text-gray-700 text-sm lg:text-base">{t.analytics3}</span>
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.analytics3}
+                  </span>
                 </div>
               </div>
             </CardContent>

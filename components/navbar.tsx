@@ -1,20 +1,57 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
+import { Lexend_Deca } from "next/font/google"
 
 const LANGUAGES = [
   { code: "es", label: "ESP", flag: "🇪🇸" },
   { code: "en", label: "ENG", flag: "🇬🇧" },
 ];
 
+const lexendDeca = Lexend_Deca({ subsets: ["latin"], weight: ["400", "700"] });
+
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme();
   const [lang, setLang] = useState("es");
+
+  // Load persisted settings on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("preferredLanguage");
+      if (savedLang) {
+        setLang(savedLang);
+        (window as any).__GLOBAL_LANG__ = savedLang;
+      }
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme && savedTheme !== theme) {
+        setTheme(savedTheme);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Persist language changes
+  const handleLangChange = (newLang: string) => {
+    setLang(newLang);
+    if (typeof window !== "undefined") {
+      (window as any).__GLOBAL_LANG__ = newLang;
+      localStorage.setItem("preferredLanguage", newLang);
+    }
+  };
+
+  // Persist theme changes
+  const handleThemeToggle = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", newTheme);
+    }
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -47,7 +84,9 @@ export function Navbar() {
               draggable={false}
               style={{ filter: 'invert(0%)', ...(typeof window !== 'undefined' && document.documentElement.classList.contains('dark') ? { filter: 'invert(0%)' } : {}) }}
             />
-            <span className="text-xl font-bold text-[#461b6a] dark:text-[#d8c7fa]">
+            <span
+              className={`text-3xl text-[#461b6a] dark:text-[#d8c7fa] ${lexendDeca.className}`}
+            >
               Autolytics
             </span>
           </div>
@@ -60,19 +99,19 @@ export function Navbar() {
             <div className="flex items-center space-x-8">
               <button
                 onClick={() => scrollToSection("hero")}
-                className="text-[#461b6a] dark:text-[#d8c7fa] hover:text-[#231429] dark:hover:text-white transition-colors font-medium cursor-pointer"
+                className="text-[#461b6a] dark:text-[#d8c7fa] hover:text-[#231429] dark:hover:text-white font-medium cursor-pointer"
               >
                 {t.inicio}
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className="text-[#461b6a] dark:text-[#d8c7fa] hover:text-[#231429] dark:hover:text-white transition-colors font-medium cursor-pointer"
+                className="text-[#461b6a] dark:text-[#d8c7fa] hover:text-[#231429] dark:hover:text-white  font-medium cursor-pointer"
               >
                 {t.servicios}
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-[#461b6a] dark:text-[#d8c7fa] hover:text-[#231429] dark:hover:text-white transition-colors font-medium cursor-pointer"
+                className="text-[#461b6a] dark:text-[#d8c7fa] hover:text-[#231429] dark:hover:text-white font-medium cursor-pointer"
               >
                 {t.contacto}
               </button>
@@ -86,7 +125,7 @@ export function Navbar() {
               <button
                 aria-label="Toggle theme"
                 className="p-2 rounded-full border border-gray-200 bg-white hover:bg-gray-100 dark:bg-[#461b6a] dark:border-[#d8c7fa] dark:hover:bg-[#231429] transition-all duration-500 mr-2"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={handleThemeToggle}
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", transition: 'all 0.5s cubic-bezier(.4,0,.2,1)' }}
               >
                 {theme === "dark" ? (
@@ -99,7 +138,7 @@ export function Navbar() {
               <div className="flex items-center ml-2">
                 <button
                   className={`px-2 py-1 rounded-l-full border border-gray-300 font-semibold transition-colors duration-200 text-sm ${lang === "es" ? "bg-[#461b6a] text-[#d8c7fa]" : "bg-white text-[#461b6a] hover:bg-gray-100"}`}
-                  onClick={() => { setLang("es"); if (typeof window !== 'undefined') (window as any).__GLOBAL_LANG__ = "es"; }}
+                  onClick={() => handleLangChange("es")}
                   aria-label="Cambiar a español"
                   style={{ fontSize: 14, lineHeight: 1, minWidth: 28 }}
                 >
@@ -107,7 +146,7 @@ export function Navbar() {
                 </button>
                 <button
                   className={`px-2 py-1 rounded-r-full border border-gray-300 font-semibold transition-colors duration-200 text-sm ${lang === "en" ? "bg-[#461b6a] text-[#d8c7fa]" : "bg-white text-[#461b6a] hover:bg-gray-100"}`}
-                  onClick={() => { setLang("en"); if (typeof window !== 'undefined') (window as any).__GLOBAL_LANG__ = "en"; }}
+                  onClick={() => handleLangChange("en")}
                   aria-label="Switch to English"
                   style={{ fontSize: 14, lineHeight: 1, minWidth: 28 }}
                 >
@@ -170,7 +209,7 @@ export function Navbar() {
                 <button
                   aria-label="Toggle theme"
                   className="p-2 rounded-full border border-gray-200 bg-white hover:bg-gray-100 dark:bg-[#461b6a] dark:border-[#d8c7fa] dark:hover:bg-[#231429] transition-all duration-500"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  onClick={handleThemeToggle}
                   style={{ display: "flex", alignItems: "center", justifyContent: "center", transition: 'all 0.5s cubic-bezier(.4,0,.2,1)' }}
                 >
                   {theme === "dark" ? (
@@ -183,7 +222,7 @@ export function Navbar() {
                 <div className="flex items-center">
                   <button
                     className={`px-2 py-1 rounded-l-full border border-gray-300 font-semibold transition-colors duration-200 text-sm ${lang === "es" ? "bg-[#461b6a] text-[#d8c7fa]" : "bg-white text-[#461b6a] hover:bg-gray-100"}`}
-                    onClick={() => { setLang("es"); if (typeof window !== 'undefined') (window as any).__GLOBAL_LANG__ = "es"; }}
+                    onClick={() => handleLangChange("es")}
                     aria-label="Cambiar a español"
                     style={{ fontSize: 14, lineHeight: 1, minWidth: 28 }}
                   >
@@ -191,7 +230,7 @@ export function Navbar() {
                   </button>
                   <button
                     className={`px-2 py-1 rounded-r-full border border-gray-300 font-semibold transition-colors duration-200 text-sm ${lang === "en" ? "bg-[#461b6a] text-[#d8c7fa]" : "bg-white text-[#461b6a] hover:bg-gray-100"}`}
-                    onClick={() => { setLang("en"); if (typeof window !== 'undefined') (window as any).__GLOBAL_LANG__ = "en"; }}
+                    onClick={() => handleLangChange("en")}
                     aria-label="Switch to English"
                     style={{ fontSize: 14, lineHeight: 1, minWidth: 28 }}
                   >

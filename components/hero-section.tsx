@@ -4,7 +4,7 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-// import { useState } from "react"
+import { useTheme } from "next-themes";
 
 // Accept lang as a prop from parent/navbar
 // Remove local lang state
@@ -17,6 +17,7 @@ export function HeroSection() {
   const [lang, setLang] = useState(
     typeof window !== 'undefined' && window.__GLOBAL_LANG__ ? window.__GLOBAL_LANG__ : "es"
   );
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handler = () => {
@@ -90,18 +91,24 @@ export function HeroSection() {
               <Button
                 onClick={scrollToContact}
                 size="lg"
-                className="font-semibold px-6 cursor-pointer lg:px-8 py-3 lg:py-4 text-base lg:text-lg text-white hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: "#03ccd0" }}
+                className={`font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg transition-colors cursor-pointer
+                  ${theme === "dark"
+                    ? "bg-[#461b6a] text-[#d8c7fa] hover:bg-[#250F3B]"
+                    : "bg-[#03ccd0] text-white hover:bg-[#02b3b7]"}
+                `}
               >
-                {t.diag}
+                {lang === "en" ? "Get Free Diagnosis" : "Diagnóstico Gratuito"}
               </Button>
 
               <Button
                 onClick={scrollToServices}
-                variant="ghost"
+                //variant="ghost"
                 size="lg"
-                className="font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg hover:bg-white/20 transition-colors cursor-pointer"
-                style={{ color: "#461b6a" }}
+                className={`font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg cursor-pointer
+                  ${theme === "dark"
+                    ? "bg-[#BCA2E0] text-[#461b6a] hover:bg-[#987FBA]"
+                    : "bg-[#ffffff] text-[#461b6a] hover:bg-[#BCA2E0]"}
+                `}
               >
                 {t.services}
               </Button>
