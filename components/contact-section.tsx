@@ -137,15 +137,15 @@ export function ContactSection() {
           {/* ... columna derecha con info de contacto y mascota ... */}
           <div className="md:col-span-2 flex flex-col items-center justify-center text-center">
              <Image
-              src="/autolytics-robot-head.png" 
+              src="/autolytics-robot-head.png"
               alt="Autolytics Mascot"
-              width={120}
-              height={120}
+              width={180}
+              height={180}
               className="mb-8"
-                style={{
-                    filter:
-                      "drop-shadow(0 4px 32px rgba(35, 20, 41, 0.7)) drop-shadow(0 2px 12px rgba(70, 27, 106, 0.5))",
-                  }}
+              style={{
+                filter:
+                  "drop-shadow(0 4px 32px rgba(35, 20, 41, 0.7)) drop-shadow(0 2px 12px rgba(70, 27, 106, 0.5))",
+              }}
             />
             <h3 className="text-2xl font-bold text-[#5F259F] dark:text-[#00C4CC] mb-6">
               {t.contactTitle}
@@ -153,11 +153,28 @@ export function ContactSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Mail className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                <a href="mailto:christian.bossio@autolytics.net" className="text-lg text-gray-700 dark:text-gray-200 hover:underline">christian.bossio@autolytics.net</a>
+                <a href="mailto:christian.bossio@autolytics.net" className="text-lg text-gray-700 dark:text-gray-200 hover:underline">
+                  christian.bossio@autolytics.net
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-6 h-6 text-gray-600 dark:text-gray-300" />
                 <span className="text-lg text-gray-700 dark:text-gray-200">{t.location}</span>
+              </div>
+              {/* Redes Sociales */}
+              <div className="flex items-center justify-center gap-4 my-2">
+                <a href="https://www.instagram.com/autolytics.ar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <Image src="/instagram.png" alt="Instagram" width={28} height={28} className="hover:scale-110 transition-transform" />
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61581353905999" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <Image src="/facebook.png" alt="Facebook" width={28} height={28} className="hover:scale-110 transition-transform" />
+                </a>
+                <a href="https://www.tiktok.com/@autolytics" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                  <Image src="/tiktok.png" alt="TikTok" width={28} height={28} className="hover:scale-110 transition-transform" />
+                </a>
+                <a href="https://www.linkedin.com/in/autolytics-automation-and-analytics/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <Image src="/linkedin.png" alt="LinkedIn" width={28} height={28} className="hover:scale-110 transition-transform" />
+                </a>
               </div>
             </div>
           </div>
