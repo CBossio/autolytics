@@ -152,12 +152,6 @@ export function ContactSection() {
             </h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <Mail className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                <a href="mailto:christian.bossio@autolytics.net" className="text-lg text-gray-700 dark:text-gray-200 hover:underline">
-                  christian.bossio@autolytics.net
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
                 <MapPin className="w-6 h-6 text-gray-600 dark:text-gray-300" />
                 <span className="text-lg text-gray-700 dark:text-gray-200">{t.location}</span>
               </div>
