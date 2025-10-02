@@ -71,7 +71,10 @@ export function ContactSection() {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center px-4 py-24 bg-white dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden">
+    <section
+      id="contact"
+      className="relative w-full min-h-screen flex items-center justify-center px-4 py-24 bg-white dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden"
+    >
       {/* ... círculos de fondo ... */}
       <div className="absolute top-10 left-10 w-48 h-48 rounded-full bg-purple-200 opacity-20 dark:hidden animate-blob filter blur-3xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-blue-200 opacity-20 dark:hidden animate-blob animation-delay-2000 filter blur-3xl"></div>
@@ -157,7 +160,7 @@ export function ContactSection() {
                   <Image src="/facebook.png" alt="Facebook" width={28} height={28} className="hover:scale-110 transition-transform" />
                 </a>
                 <a href="https://www.tiktok.com/@autolytics" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                  <Image src="/tiktok.png" alt="TikTok" width={28} height={28} className="hover:scale-110 transition-transform" />
+                  <Image src="/tiktok.png" alt="TikTok" width={30} height={30} className="hover:scale-110 transition-transform" />
                 </a>
                 <a href="https://www.linkedin.com/company/autolytics-ar" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <Image src="/linkedin.png" alt="LinkedIn" width={28} height={28} className="hover:scale-110 transition-transform" />

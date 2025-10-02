@@ -37,8 +37,8 @@ export function HeroSection() {
     title2: lang === "en" ? "smarter decisions." : "más decisiones inteligentes.",
     desc:
       lang === "en"
-        ? "At Autolytics, we transform your repetitive processes into automated systems, your raw data into clear insights, and boost your marketing so you can grow your business."
-        : "En Autolytics, transformamos tus procesos repetitivos en sistemas automáticos, tus datos en bruto en información clara y potenciamos tu marketing para que puedas hacer crecer tu negocio.",
+        ? "We specialize in process automation, data analytics, and digital marketing. At Autolytics, we transform your repetitive tasks into automated systems and your raw data into clear insights to grow your business."
+        : "Nos especializamos en automatización de procesos, análisis de datos y marketing digital. En Autolytics, transformamos tus tareas repetitivas en sistemas automáticos y tus datos en bruto en información clara para hacer crecer tu negocio.",
     diag: lang === "en" ? "Schedule Free Diagnosis" : "Agendar Diagnóstico Gratuito",
     services: lang === "en" ? "See our services" : "Ver nuestros servicios",
   };
@@ -59,8 +59,8 @@ export function HeroSection() {
 
   return (
     <section
+      id="hero"
       className="min-h-screen flex items-center justify-center px-4 py-16 pt-24 bg-gradient-to-br from-purple-100 via-[#d8c7fa] to-purple-200 dark:from-[#1A0B2E] dark:via-[#2C1E42] dark:to-[#461b6a]"
-      
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">

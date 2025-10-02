@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Head from "next/head";
 import {
   Accordion,
   AccordionContent,
@@ -8,11 +9,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+// eslint-disable-next-line
+declare global {
+  interface Window { __GLOBAL_LANG__?: string }
+}
+
 export function FaqSection() {
   const [lang, setLang] = useState(
-    typeof window !== "undefined" && window.__GLOBAL_LANG__
-      ? window.__GLOBAL_LANG__
-      : "es"
+    typeof window !== 'undefined' && window.__GLOBAL_LANG__ ? window.__GLOBAL_LANG__ : "es"
   );
 
   useEffect(() => {
@@ -28,62 +32,65 @@ export function FaqSection() {
 
   const t = {
     title: lang === "en" ? "Frequently Asked Questions" : "Preguntas Frecuentes",
-    faqs:
-      lang === "en"
-        ? [
-            {
-              q: "What kind of businesses do you work with?",
-              a: "We work with businesses of all sizes, from startups to established companies, that are looking to optimize their processes, better understand their data, and improve their digital marketing.",
-            },
-            {
-              q: "How long does the free diagnosis take?",
-              a: "The initial diagnosis usually takes between 30 and 60 minutes. It's a conversation where we seek to understand your challenges and identify opportunities for improvement, with no commitment required.",
-            },
-            {
-              q: "What is the typical return on investment (ROI) of automating processes?",
-              a: "The return on investment varies depending on the complexity of the processes, but our clients generally see a significant return by saving dozens of hours per week and reducing human errors, allowing their teams to focus on strategic tasks.",
-            },
-            {
-              q: "Do I need technical knowledge to use your dashboards?",
-              a: "Not at all. We design our dashboards to be intuitive and easy to understand for any user, regardless of their technical background. The goal is for you to have clear information to make decisions quickly.",
-            },
-          ]
-        : [
-            {
-              q: "¿Con qué tipo de negocios trabajan?",
-              a: "Trabajamos con empresas de todos los tamaños, desde startups hasta compañías consolidadas, que buscan optimizar sus procesos, entender mejor sus datos y mejorar su marketing digital.",
-            },
-            {
-              q: "¿Cuánto tiempo dura el diagnóstico gratuito?",
-              a: "El diagnóstico inicial suele durar entre 30 y 60 minutos. Es una conversación donde buscamos entender tus desafíos e identificar oportunidades de mejora, sin ningún tipo de compromiso.",
-            },
-            {
-              q: "¿Cuál es el retorno de inversión (ROI) típico de una automatización de procesos?",
-              a: "El retorno de inversión varía según la complejidad de los procesos, pero nuestros clientes generalmente ven un retorno significativo al ahorrar decenas de horas semanales y reducir errores humanos, permitiendo que su equipo se enfoque en tareas estratégicas.",
-            },
-            {
-              q: "¿Necesito conocimientos técnicos para usar sus reportes?",
-              a: "Para nada. Diseñamos nuestros tableros para que sean intuitivos y fáciles de entender por cualquier usuario, sin importar su perfil técnico. El objetivo es que tengas información clara para tomar decisiones rápidamente.",
-            },
-          ],
+    q1: lang === "en" ? "What kind of businesses can benefit from your services?" : "¿Qué tipo de negocios se pueden beneficiar de sus servicios?",
+    a1: lang === "en" ? "Any business that has repetitive manual processes, wants to make data-driven decisions, or needs to improve its online presence. We work with startups, SMEs, and large companies across various industries." : "Cualquier negocio que tenga procesos manuales repetitivos, quiera tomar decisiones basadas en datos o necesite mejorar su presencia online. Trabajamos con startups, pymes y grandes empresas de diversas industrias.",
+    q2: lang === "en" ? "How long does it take to see results?" : "¿En cuánto tiempo se ven los resultados?",
+    a2: lang === "en" ? "Process automation can show results in a matter of days by saving time and reducing errors. For business analytics and marketing, the timeline can vary, but you will start seeing valuable insights and performance improvements within the first few weeks." : "La automatización de procesos puede mostrar resultados en cuestión de días al ahorrar tiempo y reducir errores. Para la analítica de negocio y el marketing, el tiempo puede variar, pero empezarás a ver insights valiosos y mejoras de rendimiento en las primeras semanas.",
+    q3: lang === "en" ? "What is the cost of the services?" : "¿Cuál es el costo de los servicios?",
+    a3: lang === "en" ? "Our prices are tailored to the specific needs of each client. We start with a free diagnosis to understand your challenges and goals, and then we prepare a personalized proposal with no obligation." : "Nuestros precios se adaptan a las necesidades específicas de cada cliente. Empezamos con un diagnóstico gratuito para entender tus desafíos y objetivos, y a partir de ahí preparamos una propuesta personalizada y sin compromiso.",
+    q4: lang === "en" ? "Do I need technical knowledge to hire your services?" : "¿Necesito tener conocimientos técnicos para contratar sus servicios?",
+    a4: lang === "en" ? "Not at all. We handle all the technical complexity. Our goal is for you to benefit from technology without needing to be an expert. We explain the results and how everything works in a clear and simple way." : "No, en absoluto. Nos encargamos de toda la complejidad técnica. Nuestro objetivo es que puedas beneficiarte de la tecnología sin necesidad de ser un experto. Nosotros te explicamos los resultados y el funcionamiento de una manera clara y sencilla.",
+  };
+
+  const faqs = [
+    { question: t.q1, answer: t.a1 },
+    { question: t.q2, answer: t.a2 },
+    { question: t.q3, answer: t.a3 },
+    { question: t.q4, answer: t.a4 },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
   };
 
   return (
-    <section id="faq" className="w-full min-h-screen flex items-center justify-center px-4 py-24 bg-gray-50 dark:bg-[#1a0b2e]">
+    <section
+      id="faq"
+      className="w-full min-h-screen flex items-center justify-center px-4 py-24 bg-purple-50 dark:bg-[#1A0B2E] transition-colors duration-300"
+    >
       <div className="container mx-auto max-w-4xl px-4">
+        <Head>
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchema)}
+          </script>
+        </Head>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#461b6a] dark:text-[#00C4CC]">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#461b6a] dark:text-white">
             {t.title}
           </h2>
         </div>
-        <Accordion type="single" collapsible className="w-full">
-          {t.faqs.map((faq, index) => (
-            <AccordionItem value={`item-${index}`} key={index}>
-              <AccordionTrigger className="text-left text-lg font-semibold text-gray-800 dark:text-gray-200">
-                {faq.q}
+
+        <Accordion type="multiple" className="w-full">
+          {faqs.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border-b border-purple-200 dark:border-purple-800"
+            >
+              <AccordionTrigger className="text-left text-lg font-semibold text-[#461b6a] dark:text-purple-200 hover:no-underline">
+                {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-base text-gray-600 dark:text-gray-400">
-                {faq.a}
+              <AccordionContent className="text-base text-gray-700 dark:text-gray-300 pt-2 pb-4">
+                {faq.answer}
               </AccordionContent>
             </AccordionItem>
           ))}

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import Head from "next/head";
 import { Cog, BarChart3, CheckCircle, Megaphone } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -57,12 +58,55 @@ export function ServicesSection() {
     turquoise: '#00C4CC', // Accent for titles, icons
   };
 
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "name": t.procTitle,
+        "description": t.procDesc,
+        "provider": {
+          "@type": "Organization",
+          "name": "Autolytics"
+        },
+        "serviceType": "Automatización de Procesos Empresariales"
+      },
+      {
+        "@type": "Service",
+        "name": t.analyticsTitle,
+        "description": t.analyticsDesc,
+        "provider": {
+          "@type": "Organization",
+          "name": "Autolytics"
+        },
+        "serviceType": "Análisis de Datos y Business Intelligence"
+      },
+      {
+        "@type": "Service",
+        "name": t.marketingTitle,
+        "description": t.marketingDesc,
+        "provider": {
+          "@type": "Organization",
+          "name": "Autolytics"
+        },
+        "serviceType": "Marketing Digital y SEO"
+      }
+    ]
+  };
+
   return (
     <section
+      id="services"
       className="w-full min-h-screen flex items-center justify-center px-4 py-24 bg-white dark:bg-[#121212] transition-colors duration-300"
     >
       <div className="container mx-auto max-w-7xl px-4">
         <div className="text-center mb-12">
+          <Head>
+            <script type="application/ld+json">
+              {JSON.stringify(servicesSchema)}
+            </script>
+          </Head>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-balance text-[#461b6a] dark:text-white">
             {t.title}
           </h2>

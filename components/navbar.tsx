@@ -76,6 +76,7 @@ export function Navbar() {
     inicio: lang === "en" ? "Home" : "Inicio",
     servicios: lang === "en" ? "Services" : "Servicios",
     contacto: lang === "en" ? "Contact" : "Contacto",
+    faq: lang === "en" ? "FAQ" : "Preguntas Frecuentes",
     diagnostico: lang === "en" ? "Free Diagnosis" : "Diagnóstico Gratuito",
   };
 
@@ -103,7 +104,7 @@ export function Navbar() {
 
           {/* Desktop Menu - Centered */}
           <div className="hidden md:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-6 lg:space-x-8">
               <button
                 onClick={() => scrollToSection("hero")}
                 className={`text-[#461b6a] dark:text-[#d8c7fa] hover:text-black dark:hover:text-white font-medium cursor-pointer transition-colors duration-300 ${lexendDeca.className}`}
@@ -121,6 +122,12 @@ export function Navbar() {
                 className={`text-[#461b6a] dark:text-[#d8c7fa] hover:text-black dark:hover:text-white font-medium cursor-pointer transition-colors duration-300 ${lexendDeca.className}`}
               >
                 {t.contacto}
+              </button>
+              <button
+                onClick={() => scrollToSection("faq")}
+                className={`text-[#461b6a] dark:text-[#d8c7fa] hover:text-black dark:hover:text-white font-medium cursor-pointer transition-colors duration-300 ${lexendDeca.className}`}
+              >
+                {t.faq}
               </button>
             </div>
           </div>
@@ -171,18 +178,20 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
-            style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {isMenuOpen ? (
-              <X size={24} color={theme === "dark" ? "#d8c7fa" : "#461b6a"} />
-            ) : (
-              <Menu size={24} color={theme === "dark" ? "#d8c7fa" : "#461b6a"} />
-            )}
-          </button>
+          <ClientOnly>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2"
+              style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? (
+                <X size={24} color={theme === "dark" ? "#d8c7fa" : "#461b6a"} />
+              ) : (
+                <Menu size={24} color={theme === "dark" ? "#d8c7fa" : "#461b6a"} />
+              )}
+            </button>
+          </ClientOnly>
         </div>
 
         {/* Mobile Menu */}
@@ -209,6 +218,13 @@ export function Navbar() {
                 style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
               >
                 {t.contacto}
+              </button>
+              <button
+                onClick={() => scrollToSection("faq")}
+                className={`text-left font-medium py-2 transition-colors ${lexendDeca.className}`}
+                style={{ color: theme === "dark" ? "#d8c7fa" : "#461b6a" }}
+              >
+                {t.faq}
               </button>
               <Button
                 onClick={() => scrollToSection("contact")}
