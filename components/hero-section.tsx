@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes";
+import { ClientOnly } from "./ClientOnly";
 
 // Accept lang as a prop from parent/navbar
 // Remove local lang state
@@ -23,21 +24,11 @@ export function HeroSection() {
     const handler = () => {
       setLang(window.__GLOBAL_LANG__ || "es");
     };
-    window.addEventListener("languageChange", handler);
-    // Also patch setLang in window.__GLOBAL_LANG__ setter
-    const orig = Object.getOwnPropertyDescriptor(window, "__GLOBAL_LANG__");
-    let _lang = window.__GLOBAL_LANG__;
-    Object.defineProperty(window, "__GLOBAL_LANG__", {
-      configurable: true,
-      get() { return _lang; },
-      set(val) {
-        _lang = val;
-        window.dispatchEvent(new Event("languageChange"));
-      }
-    });
+    // Set initial lang and listen for changes
+    handler();
+    window.addEventListener("languageChange", handler);    
     return () => {
       window.removeEventListener("languageChange", handler);
-      if (orig) Object.defineProperty(window, "__GLOBAL_LANG__", orig);
     };
   }, []);
 
@@ -46,8 +37,8 @@ export function HeroSection() {
     title2: lang === "en" ? "smarter decisions." : "más decisiones inteligentes.",
     desc:
       lang === "en"
-        ? "At Autolytics, we transform your repetitive processes into automated systems and your raw data into clear insights so you can grow your business."
-        : "En Autolytics transformamos tus procesos repetitivos en sistemas automáticos y tus datos en bruto en información clara para que puedas hacer crecer tu negocio.",
+        ? "At Autolytics, we transform your repetitive processes into automated systems, your raw data into clear insights, and boost your marketing so you can grow your business."
+        : "En Autolytics, transformamos tus procesos repetitivos en sistemas automáticos, tus datos en bruto en información clara y potenciamos tu marketing para que puedas hacer crecer tu negocio.",
     diag: lang === "en" ? "Schedule Free Diagnosis" : "Agendar Diagnóstico Gratuito",
     services: lang === "en" ? "See our services" : "Ver nuestros servicios",
   };
@@ -68,8 +59,8 @@ export function HeroSection() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center px-4 py-16 pt-24"
-      style={{ backgroundColor: "#d8c7fa" }}
+      className="min-h-screen flex items-center justify-center px-4 py-16 pt-24 bg-gradient-to-br from-purple-100 via-[#d8c7fa] to-purple-200 dark:from-[#1A0B2E] dark:via-[#2C1E42] dark:to-[#461b6a]"
+      
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -77,12 +68,12 @@ export function HeroSection() {
           <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
             <div className="space-y-4">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
-                <span style={{ color: "#461b6a" }}>{t.title1}</span>
+                <span className="text-[#461b6a] dark:text-white">{t.title1}</span>
                 <br />
-                <span style={{ color: "#461b6a" }}>{t.title2}</span>
+                <span className="text-[#461b6a] dark:text-white">{t.title2}</span>
               </h1>
 
-              <p className="text-base sm:text-lg md:text-xl text-gray-700 text-pretty leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-purple-200 text-pretty leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 {t.desc}
               </p>
             </div>
@@ -90,25 +81,15 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 onClick={scrollToContact}
-                size="lg"
-                className={`font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg transition-colors cursor-pointer
-                  ${theme === "dark"
-                    ? "bg-[#461b6a] text-[#d8c7fa] hover:bg-[#250F3B]"
-                    : "bg-[#03ccd0] text-white hover:bg-[#02b3b7]"}
-                `}
+                className="font-semibold px-8 py-6 text-lg transition-all duration-300 cursor-pointer bg-[#03ccd0] text-white hover:bg-[#02b3b7] shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
-                {lang === "en" ? "Get Free Diagnosis" : "Diagnóstico Gratuito"}
+                {t.diag}
               </Button>
 
               <Button
                 onClick={scrollToServices}
-                //variant="ghost"
-                size="lg"
-                className={`font-semibold px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg cursor-pointer
-                  ${theme === "dark"
-                    ? "bg-[#BCA2E0] text-[#461b6a] hover:bg-[#987FBA]"
-                    : "bg-[#ffffff] text-[#461b6a] hover:bg-[#BCA2E0]"}
-                `}
+                variant="outline"
+                className="font-semibold px-8 py-6 text-lg cursor-pointer bg-white/80 text-[#461b6a] border-2 border-white hover:bg-white hover:text-blue-[#461b6a] dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
                 {t.services}
               </Button>
@@ -119,18 +100,20 @@ export function HeroSection() {
           {/* Robot Mascot */}
           <div className="flex justify-center lg:justify-end order-first lg:order-last">
             <div className="relative">
-              <Image
-                src="/autolytics-full-logo.png"
-                alt="Robot mascota de Autolytics"
-                width={400}
-                height={400}
-                className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto"
-                style={{
-                  filter:
-                    "drop-shadow(0 0 80px rgba(27, 7, 69, 0.4)) drop-shadow(0 0 80px rgba(50, 7, 69, 0.3)) drop-shadow(0 0 80px rgba(50, 7, 69, 0.2))",
-                }}
-                priority
-              />
+              <ClientOnly>
+                <Image
+                  src={theme === 'dark' ? "/autolytics-full-black.png" : "/autolytics-full-logo.png"}
+                  alt="Robot mascota de Autolytics"
+                  width={400}
+                  height={400}
+                  className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto"
+                  style={{
+                    filter:
+                      "drop-shadow(0 0 80px rgba(27, 7, 69, 0.4)) drop-shadow(0 0 80px rgba(50, 7, 69, 0.3)) drop-shadow(0 0 80px rgba(50, 7, 69, 0.2))",
+                  }}
+                  priority
+                />
+              </ClientOnly>
             </div>
           </div>
         </div>

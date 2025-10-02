@@ -1,23 +1,17 @@
-import { Navbar } from "@/components/navbar"
-import { HeroSection } from "@/components/hero-section"
-import { ServicesSection } from "@/components/services-section"
-import { ContactSection } from "@/components/contact-section"
+import { Navbar } from "@/components/navbar";
+import { HeroSection } from "@/components/hero-section";
+import { ServicesSection } from "@/components/services-section";
+import { ContactSection } from "@/components/contact-section";
+import { FaqSection } from "@/components/faq-section";
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
+    <main>
       <Navbar />
-      <main className="min-h-screen">
-        <section id="hero">
-          <HeroSection />
-        </section>
-        <section id="services">
-          <ServicesSection />
-        </section>
-        <section id="contact">
-          <ContactSection />
-        </section>
-      </main>
-    </>
-  )
+      <HeroSection />
+      <ServicesSection />
+      <FaqSection />
+      <ContactSection />
+    </main>
+  );
 }

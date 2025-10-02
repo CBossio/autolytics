@@ -20,24 +20,16 @@ export function ContactSection() {
     const handler = () => {
       setLang(window.__GLOBAL_LANG__ || "es");
     };
-    window.addEventListener("languageChange", handler);
-    const orig = Object.getOwnPropertyDescriptor(window, "__GLOBAL_LANG__");
-    let _lang = window.__GLOBAL_LANG__;
-    Object.defineProperty(window, "__GLOBAL_LANG__", {
-      configurable: true,
-      get() { return _lang; },
-      set(val) {
-        _lang = val;
-        window.dispatchEvent(new Event("languageChange"));
-      }
-    });
+    // Set initial lang and listen for changes
+    handler();
+    window.addEventListener("languageChange", handler);    
     return () => {
       window.removeEventListener("languageChange", handler);
-      if (orig) Object.defineProperty(window, "__GLOBAL_LANG__", orig);
     };
   }, []);
   
   const t = {
+    title: lang === "en" ? "Get in Touch" : "Ponte en Contacto",
     subTitle: lang === "en" ? "Let's talk. Complete the form, and we will get in touch to coordinate a free, no-commitment diagnosis of your processes." : "Hablemos. Completa el formulario y nos pondremos en contacto para coordinar un diagnóstico gratuito y sin compromiso de tus procesos.",
     contactTitle: lang === "en" ? "Contact Information" : "Información de Contacto",
     nameLabel: lang === "en" ? "Name" : "Nombre",
@@ -45,7 +37,7 @@ export function ContactSection() {
     emailLabel: lang === "en" ? "Company Email" : "Email de la empresa",
     emailPlaceholder: lang === "en" ? "contact@yourcompany.com" : "contacto@tuempresa.com",
     helpLabel: lang === "en" ? "How can we help you?" : "¿En qué podemos ayudarte?",
-    helpPlaceholder: lang === "en" ? "Tell us about your business and what processes you would like to automate or analyze..." : "Cuéntanos sobre tu negocio y qué procesos te gustaría automatizar o analizar...",
+    helpPlaceholder: lang === "en" ? "Tell us about your business, what processes you'd like to automate, analyze, or what marketing services you need..." : "Cuéntanos sobre tu negocio, qué procesos te gustaría automatizar, analizar, o qué servicios de marketing necesitas...",
     submitButton: lang === "en" ? "Send Inquiry" : "Enviar Consulta",
     location: "Buenos Aires, Argentina",
     successTitle: lang === "en" ? "Message Sent!" : "¡Mensaje Enviado!",
@@ -79,7 +71,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="relative w-full py-20 md:py-32 bg-gray-50 dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden">
+    <section className="relative w-full min-h-screen flex items-center justify-center px-4 py-24 bg-white dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden">
       {/* ... círculos de fondo ... */}
       <div className="absolute top-10 left-10 w-48 h-48 rounded-full bg-purple-200 opacity-20 dark:hidden animate-blob filter blur-3xl"></div>
       <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-blue-200 opacity-20 dark:hidden animate-blob animation-delay-2000 filter blur-3xl"></div>
@@ -88,7 +80,8 @@ export function ContactSection() {
       
       <div className="relative z-10 container mx-auto max-w-6xl px-4">
         {/* ... títulos de la sección ... */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#461b6a] dark:text-white mb-4">{t.title}</h2>
           <p className="mt-4 text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {t.subTitle}
           </p>
@@ -160,13 +153,13 @@ export function ContactSection() {
                 <a href="https://www.instagram.com/autolytics.ar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                   <Image src="/instagram.png" alt="Instagram" width={28} height={28} className="hover:scale-110 transition-transform" />
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=61581353905999" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <a href="https://www.facebook.com/autolytics.ar" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                   <Image src="/facebook.png" alt="Facebook" width={28} height={28} className="hover:scale-110 transition-transform" />
                 </a>
                 <a href="https://www.tiktok.com/@autolytics" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                   <Image src="/tiktok.png" alt="TikTok" width={28} height={28} className="hover:scale-110 transition-transform" />
                 </a>
-                <a href="https://www.linkedin.com/in/autolytics-automation-and-analytics/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/company/autolytics-ar" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <Image src="/linkedin.png" alt="LinkedIn" width={28} height={28} className="hover:scale-110 transition-transform" />
                 </a>
               </div>
