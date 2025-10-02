@@ -15,7 +15,7 @@ const siteUrl = "https://autolytics.ar"; // <<-- CAMBIA ESTO por tu dominio real
 export const metadata: Metadata = {
   // --- SEO Básico y para LLMs ---
   title: {
-    default: "Autolytics | Automatización, Analítica y Marketing para Pymes",
+    default: "Autolytics | Automatización, Analítica y Marketing para tu empresa",
     template: "%s | Autolytics",
   },
   description:
@@ -35,13 +35,36 @@ export const metadata: Metadata = {
     "business analytics",
     "digital marketing",
     "SME",
+    "data-driven decisions",
+    "data insights",
+    "online advertising",
+    "data visualization",
+    "data strategy",
+    "marketing strategy",
+    "growth hacking",
+    "customer acquisition",
+    "conversion optimization",
+    "content marketing",
+    "social media marketing",
   ],
   authors: [{ name: "Autolytics", url: siteUrl }],
   metadataBase: new URL(siteUrl),
 
+  // --- Favicons ---
+  icons: {
+    icon: "/favicon.png", // El favicon principal
+    shortcut: "/favicon.png", // Para accesos directos
+    apple: "/favicon.png", // Para dispositivos Apple
+    other: [
+      {
+        rel: 'icon',
+        url: '/favicon.png',
+      },
+    ],
+  },
   // --- Open Graph (para Redes Sociales) ---
   openGraph: {
-    title: "Autolytics | Automatización, Analítica y Marketing para Pymes",
+    title: "Autolytics | Automatización, Analítica y Marketing para tu empresa",
     description:
       "Transformamos tus procesos repetitivos, tus datos en insights y potenciamos tu marketing para hacer crecer tu negocio.",
     url: siteUrl,
@@ -61,7 +84,7 @@ export const metadata: Metadata = {
   // --- Twitter Card ---
   twitter: {
     card: "summary_large_image",
-    title: "Autolytics | Automatización, Analítica y Marketing para Pymes",
+    title: "Autolytics | Automatización, Analítica y Marketing para tu empresa",
     description:
       "Potenciamos tu negocio con automatización, analítica de datos y marketing digital.",
     images: [`${siteUrl}/og-image.png`], // Asegúrate de crear este archivo en la carpeta /public

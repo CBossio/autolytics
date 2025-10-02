@@ -62,7 +62,7 @@ export function FaqSection() {
               a: "El retorno de inversión varía según la complejidad de los procesos, pero nuestros clientes generalmente ven un retorno significativo al ahorrar decenas de horas semanales y reducir errores humanos, permitiendo que su equipo se enfoque en tareas estratégicas.",
             },
             {
-              q: "¿Necesito conocimientos técnicos para usar sus dashboards?",
+              q: "¿Necesito conocimientos técnicos para usar sus reportes?",
               a: "Para nada. Diseñamos nuestros tableros para que sean intuitivos y fáciles de entender por cualquier usuario, sin importar su perfil técnico. El objetivo es que tengas información clara para tomar decisiones rápidamente.",
             },
           ],
