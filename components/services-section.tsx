@@ -43,10 +43,11 @@ export function ServicesSection() {
     analytics3: lang === "en" ? "Projections and KPI tracking." : "Proyecciones y seguimiento de KPIs.",
     analytics4: lang === "en" ? "Data analysis and predictive modeling." : "Análisis de datos y modelado predictivo.",
     marketingTitle: lang === "en" ? "Marketing Services" : "Servicios de Marketing",
-    marketingDesc: lang === "en" ? "We boost your online presence and connect you with your ideal audience. From managing ad campaigns to optimizing your website to appear first on Google." : "Potenciamos tu presencia online y te conectamos con tu público ideal. Desde la gestión de campañas publicitarias hasta la optimización de tu web para aparecer primero en Google.",
-    marketing1: lang === "en" ? "Ad campaign management (Meta, Google)." : "Gestión de campañas (Meta, Google).",
-    marketing2: lang === "en" ? "SEO and content strategy." : "SEO y estrategia de contenidos.",
-    marketing3: lang === "en" ? "Social media management." : "Manejo de redes sociales.",
+    marketingDesc: lang === "en" ? "We boost your digital presence and help you reach the right audience at the right time with strategies designed to grow and sell more." : "Potenciamos tu presencia Digital y te ayudamos a llegar al público correcto, en el momento justo, con estrategias diseñadas para crecer y vender más.",
+    marketing1: lang === "en" ? "Online Ad Campaign Management." : "Gestión de campañas publicitarias online.",
+    marketing2: lang === "en" ? "SEO - Search Engine Optimization" : "SEO - Optimización para Motores de Búsqueda",
+    marketing3: lang === "en" ? "Social media Planning." : "Planificación de redes sociales.",
+    marketing4: lang === "en" ? "Social media Planning." : "Planificación de redes sociales."
   };
 
   // Define brand colors for easy reuse in Tailwind JIT compiler
@@ -231,6 +232,13 @@ export function ServicesSection() {
                   <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
                     {t.marketing3}
                   </span>
+                  </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00C4CC]" />
+                  <span className="text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                    {t.marketing4}
+                  </span>
+                  
                 </div>
               </div>
             </CardContent>
