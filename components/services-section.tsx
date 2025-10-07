@@ -42,12 +42,12 @@ export function ServicesSection() {
     analytics2: lang === "en" ? "Customer behavior analysis." : "Análisis de comportamiento de clientes.",
     analytics3: lang === "en" ? "Projections and KPI tracking." : "Proyecciones y seguimiento de KPIs.",
     analytics4: lang === "en" ? "Data analysis and predictive modeling." : "Análisis de datos y modelado predictivo.",
-    marketingTitle: lang === "en" ? "Marketing Services" : "Servicios de Marketing",
-    marketingDesc: lang === "en" ? "We boost your digital presence and help you reach the right audience at the right time with strategies designed to grow and sell more." : "Potenciamos tu presencia Digital y te ayudamos a llegar al público correcto, en el momento justo, con estrategias diseñadas para crecer y vender más.",
-    marketing1: lang === "en" ? "Online Ad Campaign Management." : "Gestión de campañas publicitarias online.",
+    marketingTitle: lang === "en" ? "Digital Marketing" : "Marketing Digital",
+    marketingDesc: lang === "en" ? "We boost your online presence and help you connect with the right audience at the right time. Our strategies are designed to grow your brand and increase your sales." : "Potenciamos tu presencia Digital y te ayudamos a llegar al público correcto, en el momento justo, con estrategias diseñadas para crecer y vender más.",
+    marketing1: lang === "en" ? "Online Advertising Campaign Management." : "Gestión de Campañas Publicitarias Online.",
     marketing2: lang === "en" ? "SEO - Search Engine Optimization" : "SEO - Optimización para Motores de Búsqueda",
-    marketing3: lang === "en" ? "Social media Planning." : "Planificación de redes sociales.",
-    marketing4: lang === "en" ? "Social media Planning." : "Planificación de redes sociales."
+    marketing3: lang === "en" ? "Content Strategy & Copywriting." : "Estrategia de Contenidos y Copywriting.",
+    marketing4: lang === "en" ? "Social Media Planning." : "Social Media Planning."
   };
 
   // Define brand colors for easy reuse in Tailwind JIT compiler
