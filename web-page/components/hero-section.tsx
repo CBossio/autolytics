@@ -115,8 +115,7 @@ export function HeroSection() {
                 <Image
                   key={mode}
                   src={mode === "dark" ? "/autolytics-full-black.png" : "/autolytics-full-logo.png"}
-                  alt={mode === "light" ? t.alt : ""}
-                  aria-hidden={mode === "dark" ? true : undefined}
+                  alt={t.alt}
                   width={400}
                   height={400}
                   className={`${mode === "light" ? "dark:hidden" : "hidden dark:block"} w-full max-w-[200px] sm:max-w-none h-auto`}

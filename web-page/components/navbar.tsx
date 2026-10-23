@@ -6,26 +6,12 @@ import { Menu, X, Sun, Moon } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import { motion, useScroll, useSpring } from "framer-motion"
+import { SEO } from "@/lib/site"
 
 import { ClientOnly } from "./ClientOnly";
 
-const DOC_META: Record<string, { title: string; description: string }> = {
-  es: {
-    title: "Autolytics | Automatización, Analítica, Agentes IA y Marketing para tu empresa",
-    description: "En Autolytics potenciamos tu negocio con automatización de procesos, agentes de IA, analítica de datos y estrategias de marketing digital (SEO, campañas). Menos tareas manuales, más decisiones inteligentes.",
-  },
-  en: {
-    title: "Autolytics | Automation, Analytics, AI Agents and Marketing for your business",
-    description: "Autolytics grows your business with process automation, AI agents, data analytics, and digital marketing (SEO, campaigns). Less manual work, smarter decisions.",
-  },
-  pt: {
-    title: "Autolytics | Automação, Análise, Agentes IA e Marketing para a sua empresa",
-    description: "A Autolytics impulsiona o seu negócio com automação de processos, agentes de IA, análise de dados e marketing digital (SEO, campanhas). Menos tarefas manuais, decisões mais inteligentes.",
-  },
-};
-
 function applyDocLang(code: string) {
-  const meta = DOC_META[code] || DOC_META.es;
+  const meta = SEO[code as keyof typeof SEO] || SEO.es;
   document.documentElement.lang = code;
   document.title = meta.title;
   document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Lexend_Deca } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SEO, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -10,16 +11,15 @@ const lexendDeca = Lexend_Deca({
   variable: "--font-lexend-deca",
 });
 
-const siteUrl = "https://autolytics.ar"; // <<-- CAMBIA ESTO por tu dominio real
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   // --- SEO Básico y para LLMs ---
   title: {
-    default: "Autolytics | Automatización, Analítica, Agentes IA y Marketing para tu empresa",
+    default: SEO.es.title,
     template: "%s | Autolytics",
   },
-  description:
-    "En Autolytics potenciamos tu negocio con automatización de procesos, agentes de IA, analítica de datos y estrategias de marketing digital (SEO, campañas). Menos tareas manuales, más decisiones inteligentes.",
+  description: SEO.es.description,
   keywords: [
     // Spanish
     "automatización de procesos",
@@ -82,9 +82,8 @@ export const metadata: Metadata = {
   },
   // --- Open Graph (para Redes Sociales) ---
   openGraph: {
-    title: "Autolytics | Automatización, Analítica y Marketing para tu empresa",
-    description:
-      "Transformamos tus procesos repetitivos, tus datos en insights y potenciamos tu marketing para hacer crecer tu negocio.",
+    title: SEO.es.title,
+    description: SEO.es.description,
     url: siteUrl,
     siteName: "Autolytics",
     images: [
@@ -102,9 +101,8 @@ export const metadata: Metadata = {
   // --- Twitter Card ---
   twitter: {
     card: "summary_large_image",
-    title: "Autolytics | Automatización, Analítica y Marketing para tu empresa",
-    description:
-      "Potenciamos tu negocio con automatización, analítica de datos y marketing digital.",
+    title: SEO.es.title,
+    description: SEO.es.description,
     images: [`${siteUrl}/og-image.png`], // Asegúrate de crear este archivo en la carpeta /public
   },
 

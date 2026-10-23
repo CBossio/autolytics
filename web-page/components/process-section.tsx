@@ -10,9 +10,9 @@ export function ProcessSection() {
   const t = {
     title: tl("Cómo trabajamos", "How we work", "Como trabalhamos"),
     subtitle: tl(
-      "Empezar es simple: un diagnóstico gratuito y una propuesta a tu medida.",
-      "Getting started is simple: a free diagnosis and a proposal tailored to you.",
-      "Começar é simples: um diagnóstico gratuito e uma proposta sob medida."
+      "Menos tareas manuales y decisiones más inteligentes empiezan simple: un diagnóstico gratuito y una propuesta a tu medida.",
+      "Less manual work and smarter decisions start simply: a free diagnosis and a proposal tailored to you.",
+      "Menos tarefas manuais e decisões mais inteligentes começam de forma simples: um diagnóstico gratuito e uma proposta sob medida."
     ),
     cta: tl("Agendar mi diagnóstico gratuito", "Schedule my free diagnosis", "Agendar meu diagnóstico gratuito"),
     steps: [
