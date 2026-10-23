@@ -99,7 +99,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative w-full flex items-center justify-center px-4 py-20 sm:py-28 bg-purple-50 dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden"
+      className="relative w-full flex items-center justify-center px-4 py-20 sm:py-28 bg-white dark:bg-gradient-to-b dark:from-[#2C1E42] dark:to-[#1A0B2E] overflow-hidden"
     >
       {/* Background blobs */}
       <div className="absolute top-10 left-10 w-48 h-48 rounded-full bg-purple-200 opacity-20 dark:hidden filter blur-3xl pointer-events-none" />

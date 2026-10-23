@@ -76,7 +76,7 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="w-full flex items-center justify-center px-4 py-20 sm:py-28 bg-white dark:bg-[#140824] transition-colors duration-300"
+      className="w-full flex items-center justify-center px-4 py-20 sm:py-28 bg-purple-50 dark:bg-[#1A0B2E] transition-colors duration-300"
     >
       <div className="container mx-auto max-w-4xl px-4">
         <div className="text-center mb-12">
@@ -90,7 +90,7 @@ export function FaqSection() {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="border border-purple-200 dark:border-purple-800 rounded-xl px-5 bg-[#F3EFFF]/60 dark:bg-white/5 data-[state=open]:bg-[#F3EFFF] data-[state=open]:border-[#5F259F]/40 dark:data-[state=open]:bg-white/10 transition-colors"
+              className="border border-purple-200 dark:border-purple-800 rounded-xl px-5 bg-white dark:bg-white/5 data-[state=open]:bg-white data-[state=open]:border-[#5F259F]/40 dark:data-[state=open]:bg-white/10 transition-colors"
             >
               <AccordionTrigger className="text-left text-base lg:text-lg font-semibold text-[#461b6a] dark:text-purple-200 hover:no-underline py-5">
                 {faq.question}

@@ -46,7 +46,7 @@ export function ProcessSection() {
   return (
     <section
       id="process"
-      className="w-full px-4 py-20 sm:py-28 bg-purple-50 dark:bg-[#1A0B2E] transition-colors duration-300"
+      className="w-full px-4 py-20 sm:py-28 bg-white dark:bg-[#140824] transition-colors duration-300"
     >
       <div className="container mx-auto max-w-6xl px-4">
         <div className="text-center mb-14 max-w-2xl mx-auto">
@@ -63,7 +63,7 @@ export function ProcessSection() {
           />
           {t.steps.map(({ title, desc }, i) => (
             <StaggerItem key={title} className="relative text-center md:px-2">
-              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-autolytics-title text-white dark:bg-autolytics-cyan dark:text-[#0b2e30] font-display text-xl font-bold shadow-lg ring-8 ring-purple-50 dark:ring-[#1A0B2E]">
+              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-autolytics-title text-white dark:bg-autolytics-cyan dark:text-[#0b2e30] font-display text-xl font-bold shadow-lg ring-8 ring-white dark:ring-[#140824]">
                 {i + 1}
               </div>
               <h3 className="font-display text-xl font-bold text-autolytics-title dark:text-white mb-2">{title}</h3>
